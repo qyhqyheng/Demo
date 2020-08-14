@@ -1,0 +1,61 @@
+package justec.qin.activity;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
+import android.os.SystemClock;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android_serialport_api.Serialble_CallbackManager;
+import justec.qin.R;
+import justec.qin.common.main.AppCommon.CommonLog;
+import justec.qin.common.main.AppCommon.DataFormat;
+import justec.qin.common.main.event.UiEvent;
+import justec.qin.common.main.event.UiMessage;
+import justec.qin.common.main.view.CallbackManager;
+import justec.qin.db.DbManager;
+import justec.qin.db.FaceManager;
+import justec.qin.fragments.language.LanguageUtil;
+import justec.qin.fragments.menu.KeyBoardDialog;
+import justec.qin.help.DataChange;
+import justec.qin.info.TemBmpInfo;
+import justec.qin.info.UserInfoManager;
+import justec.qin.manager.FingerKeyBoard_Manager;
+import justec.qin.manager.FragmentManager;
+import justec.qin.common.DefineToast;
+import justec.qin.manager.TmpManager;
+import justec.qin.speech.Media;
+import me.yokeyword.fragmentation.SupportActivity;
+import qyh_serialport_api.Finger_DataTypeChange;
+import qyh_serialport_api.Finger_SerialPortManager;
+
+public class MainAc
